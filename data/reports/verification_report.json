@@ -1,0 +1,105 @@
+{
+  "check_count": 16,
+  "success_count": 15,
+  "failure_count": 0,
+  "warning_count": 1,
+  "success": true,
+  "checks": [
+    {
+      "name": "artifacts_present",
+      "status": "PASS",
+      "critical": true,
+      "detail": "20/20 required artifacts found"
+    },
+    {
+      "name": "frozen_test_set",
+      "status": "PASS",
+      "critical": true,
+      "detail": "20 questions shared by baseline/corrupted/repaired"
+    },
+    {
+      "name": "repair_matches_baseline",
+      "status": "PASS",
+      "critical": true,
+      "detail": "repaired dataset reproduces baseline exactly (24 rows)"
+    },
+    {
+      "name": "same_sample_count",
+      "status": "PASS",
+      "critical": true,
+      "detail": "samples={'baseline': 20, 'corrupted': 20, 'repaired': 20}"
+    },
+    {
+      "name": "corruption_degrades_metrics",
+      "status": "PASS",
+      "critical": true,
+      "detail": "4/4 metrics dropped after corruption: retrieval_hit_rate, mean_token_f1, judge_accuracy, mean_judge_score"
+    },
+    {
+      "name": "repair_restores_metrics",
+      "status": "PASS",
+      "critical": true,
+      "detail": "all four metrics returned to the baseline value"
+    },
+    {
+      "name": "quality_signals",
+      "status": "PASS",
+      "critical": true,
+      "detail": "baseline=PASS (10/11), corrupted=FAIL (6/11), repaired=PASS (10/11)"
+    },
+    {
+      "name": "corruption_raises_critical_failures",
+      "status": "PASS",
+      "critical": true,
+      "detail": "critical failures on corrupted data: ['paper_id_unique', 'summary_not_empty', 'summary_min_length']"
+    },
+    {
+      "name": "freshness_reacts_to_corruption",
+      "status": "PASS",
+      "critical": true,
+      "detail": "stale_rows baseline=1 corrupted=4 repaired=1"
+    },
+    {
+      "name": "no_future_dated_rows",
+      "status": "PASS",
+      "critical": true,
+      "detail": "future_dated_rows={'baseline': 0, 'corrupted': 0, 'repaired': 0}"
+    },
+    {
+      "name": "corruption_log_traceable",
+      "status": "PASS",
+      "critical": true,
+      "detail": "seed=20251006, 6 steps, rows 24 -> 23"
+    },
+    {
+      "name": "corruption_log_matches_dataset",
+      "status": "PASS",
+      "critical": true,
+      "detail": "log says 23 rows, corrupted dataset has 23"
+    },
+    {
+      "name": "report_matches_artifacts",
+      "status": "PASS",
+      "critical": true,
+      "detail": "12 reported numbers match data/results/"
+    },
+    {
+      "name": "no_secrets_in_artifacts",
+      "status": "PASS",
+      "critical": true,
+      "detail": "scanned 2 directories, no credential pattern found"
+    },
+    {
+      "name": "env_file_not_tracked",
+      "status": "PASS",
+      "critical": true,
+      "detail": ".env is not tracked by git"
+    },
+    {
+      "name": "artifacts_are_portable",
+      "status": "WARN",
+      "critical": false,
+      "detail": "papers_embeddings.json stores an absolute persist_path; papers_embeddings_corrupted.json stores an absolute persist_path; papers_embeddings_repaired.json stores an absolute persist_path (differs per machine; consider storing it relative to the project)"
+    }
+  ]
+}

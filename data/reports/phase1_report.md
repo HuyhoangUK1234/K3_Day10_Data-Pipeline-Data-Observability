@@ -1,12 +1,12 @@
 # Phase 1 - Baseline Report
 
-Generated at: `2026-08-06T03:45:24.275347+00:00`
+Generated at: `2026-08-06T04:04:02.646194+00:00`
 
 ## 1. Source and dataset
 
 | Field | Value |
 | --- | --- |
-| `run_date` | 2026-08-06T03:45:16.308087+00:00 |
+| `run_date` | 2026-08-06T04:01:57.676182+00:00 |
 | `source_api` | Crossref REST API |
 | `query` | agentic retrieval augmented generation large language model |
 | `filter` | from-pub-date:2026-02-07,has-abstract:true |

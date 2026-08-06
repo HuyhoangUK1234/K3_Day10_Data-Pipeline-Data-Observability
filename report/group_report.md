@@ -17,7 +17,7 @@
 | 2 | [Họ tên] | [MSSV] | Data model & evaluation-set owner | `src/ingestion/cleaning.py`, `src/evaluation/testset.py` |
 | 3 | [Họ tên] | [MSSV] | Observability owner | `src/observability/quality.py`, `src/observability/reporting.py` |
 | 4 | [Nếu có] | [MSSV] | Corruption & integration owner | `src/ingestion/corruption.py`, `src/pipelines/` |
-| 5 | [Nếu có] | [MSSV] | [Vai trò] | [File, hàm hoặc artifact] |
+| 5 | Nguyễn Văn Tiến | [MSSV] | Pipeline integration & evidence owner | `src/pipelines/verification.py`, `script/verify_artifacts.py` — tái hiện hai flow, `data/reports/verification_report.json`, `report/evidence/` |
 
 ## 2. Tóm tắt kết quả
 
@@ -96,17 +96,26 @@ python -m pip install -e .
 ```bash
 python script/run_phase1.py
 python script/run_corruption_flow.py
+python script/verify_artifacts.py
 ```
 
 Cờ tùy chọn: `REFRESH_SOURCE=1` để fetch lại Crossref, `REFRESH_TEST_SET=1` để sinh lại test set,
 `RUN_RAGAS=1` để bật Ragas.
 
+`script/verify_artifacts.py` là bước xác minh cuối: nó chạy 16 check trên artifact đã sinh ra và trả
+exit code 0 khi không có critical failure. Xem mục 12.
+
 ### Kết quả tái hiện
 
 | Lệnh | Trạng thái | Thời điểm chạy gần nhất | Bằng chứng |
 | --- | --- | --- | --- |
-| Baseline pipeline | Thành công (exit 0) | 2026-08-06T03:38Z | `data/reports/phase1_report.md`, `data/results/baseline_metrics.json` |
-| Corruption flow | Thành công (exit 0) | 2026-08-06T03:41Z | `data/reports/corruption_report.md`, `data/results/corruption_log.json` |
+| Baseline pipeline | Thành công (exit 0) | 2026-08-06T04:04Z | `data/reports/phase1_report.md`, `data/results/baseline_metrics.json`, `report/evidence/run_phase1.log` |
+| Corruption flow | Thành công (exit 0) | 2026-08-06T04:04Z | `data/reports/corruption_report.md`, `data/results/corruption_log.json`, `report/evidence/run_corruption_flow.log` |
+| Artifact verification | Thành công (exit 0) — 15/16 PASS, 0 FAIL, 1 WARN | 2026-08-06T04:12Z | `data/reports/verification_report.json`, `report/evidence/verify_artifacts.log` |
+
+Toàn bộ pipeline đã được chạy lại trên một máy thứ hai từ cùng raw snapshot. `git diff` trên `data/`
+sau lần chạy đó chỉ khác ở trường `generated_at` và `persist_path`; ba file metrics
+(`baseline_metrics.json`, `corrupted_metrics.json`, `repaired_metrics.json`) giống hệt bản đã commit.
 
 ## 5. Ingestion, cleaning và data contract
 
@@ -188,6 +197,7 @@ chỉ sinh test set khi file chưa tồn tại hoặc khi đặt `REFRESH_TEST_S
 | Baseline metrics | `data/results/baseline_metrics.json` | Có | Kèm `baseline_answers.json` |
 | Quality/freshness | `data/quality/` | Có | 4 quality JSON + 3 freshness JSON + 3 file GX-style |
 | Baseline report | `data/reports/phase1_report.md` | Có | — |
+| Verification report | `data/reports/verification_report.json` | Có | 16 check, 0 critical failure |
 
 ### Baseline metrics
 
@@ -304,7 +314,38 @@ Bằng chứng cho tác động của corruption nằm ở *số liệu* (stale_
 - **Cách xác minh:** chạy lại `REFRESH_SOURCE=1 python script/run_phase1.py`; `freshness_report.json`
   cho `future_dated_rows` = 0, dải ngày 2026-02-04 → 2026-08-03, `age_days` 3–183.
 
-## 12. Giới hạn và hướng cải thiện
+## 12. Xác minh tự động
+
+Repo không đi kèm test hay grader tự động, nên nhóm bổ sung `script/verify_artifacts.py`
+(logic ở `src/pipelines/verification.py`). Script chạy trên artifact đã sinh, không import module
+xử lý dữ liệu nào, và trả exit code 1 nếu có critical failure.
+
+| Nhóm check | Nội dung kiểm tra | Kết quả |
+| --- | --- | --- |
+| Artifact inventory | 20 artifact bắt buộc có mặt | PASS (20/20) |
+| Frozen test set | Vân tay `(id, question)` giống nhau giữa test set và ba file answers | PASS (20 câu dùng chung) |
+| Repair fidelity | `papers_clean_repaired.json` bằng đúng `papers_clean.json` | PASS (24 dòng) |
+| Metric trajectory | Cùng `samples`; corrupted giảm; repaired về baseline trong sai số 1e-4 | PASS (3 check) |
+| Quality signals | baseline PASS, corrupted FAIL, repaired PASS; corruption sinh critical failure | PASS (2 check) |
+| Freshness signals | `stale_rows` corrupted > baseline và repaired = baseline; `future_dated_rows` = 0 | PASS (2 check) |
+| Corruption log | Có seed, mọi bước có `affected_paper_ids`, `output_rows` khớp dataset thật | PASS (2 check) |
+| Report ↔ artifact | 12 con số trong bảng mục 10 khớp `data/results/*.json` | PASS |
+| Hygiene | Không có pattern API key trong `report/` và `data/reports/`; `.env` không bị git track | PASS (2 check) |
+| Portability | Manifest embedding không lưu absolute path | **WARN** |
+
+Tổng: **15/16 PASS, 0 FAIL, 1 WARN**. Chi tiết máy đọc được ở `data/reports/verification_report.json`.
+
+Warning còn lại: `data/embeddings/papers_embeddings*.json` lưu `persist_path` dạng đường dẫn tuyệt đối
+của máy chạy. Nó không sai kết quả nhưng làm artifact khác nhau giữa các máy và lộ tên thư mục người
+dùng, nên được báo ở mức warning chứ không chặn. Hướng sửa: lưu `persist_path` tương đối so với
+project root.
+
+Verifier đã được kiểm chứng ngược: nhóm cố ý sửa `mean_token_f1` của trạng thái corrupted trong báo
+cáo này từ 0.7593 thành 0.9100, chạy lại thì script trả exit 1 kèm
+`report says 0.9100, artifact says 0.7593`, sau đó giá trị đúng được khôi phục. Bằng chứng ở
+`report/evidence/verify_negative_test.log`.
+
+## 13. Giới hạn và hướng cải thiện
 
 | Giới hạn hiện tại | Ảnh hưởng | Hướng cải thiện có thể kiểm chứng |
 | --- | --- | --- |
@@ -314,14 +355,14 @@ Bằng chứng cho tác động của corruption nằm ở *số liệu* (stale_
 | Corpus 24 paper | Metric nhạy với từng câu (1 câu = 5%) | Tăng `max_results`, đánh giá độ ổn định của delta |
 | Chỉ một seed corruption | Chưa biết delta ổn định tới đâu | Chạy nhiều seed, báo cáo trung bình ± độ lệch |
 
-## 13. Checklist trước khi nộp
+## 14. Checklist trước khi nộp
 
 - [ ] Thông tin nhóm và repository chính xác.
 - [ ] Phân công khớp với module, artifact và kết quả thực tế.
-- [x] Lệnh tái hiện đã được chạy lại trên phiên bản dùng để nộp.
-- [x] Baseline, corrupted và repaired dùng cùng evaluation set.
-- [x] Bảng metrics khớp với các file trong `data/results/`.
-- [x] Quality/freshness conclusions khớp với `data/quality/`.
-- [x] Các đường dẫn báo cáo và artifact truy cập được.
-- [ ] Mỗi thành viên đã hoàn thành báo cáo vai trò riêng.
-- [x] Không có `.env`, API key, token hoặc secret trong source, report, log hay ảnh.
+- [x] Lệnh tái hiện đã được chạy lại trên phiên bản dùng để nộp — trên máy thứ hai, `report/evidence/`.
+- [x] Baseline, corrupted và repaired dùng cùng evaluation set — check `frozen_test_set`.
+- [x] Bảng metrics khớp với các file trong `data/results/` — check `report_matches_artifacts`, 12 số.
+- [x] Quality/freshness conclusions khớp với `data/quality/` — check `quality_signals`, `freshness_reacts_to_corruption`.
+- [x] Các đường dẫn báo cáo và artifact truy cập được — check `artifacts_present`, 20/20.
+- [ ] Mỗi thành viên đã hoàn thành báo cáo vai trò riêng — hiện có `report/individual_report_thanh_vien_5.md`.
+- [x] Không có `.env`, API key, token hoặc secret trong source, report, log hay ảnh — check `no_secrets_in_artifacts`, `env_file_not_tracked`.

@@ -1,7 +1,7 @@
 {
   "backend": "chroma",
   "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
-  "persist_path": "C:\\Users\\Admin\\K3_Day10_Data-Pipeline-Data-Observability\\data\\chroma",
+  "persist_path": "D:\\VinUniAI\\K3_Day10_Data-Pipeline-Data-Observability\\data\\chroma",
   "collection_name": "papers-repaired",
   "documents": [
     {

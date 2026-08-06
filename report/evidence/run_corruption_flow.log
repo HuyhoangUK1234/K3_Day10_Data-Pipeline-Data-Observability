@@ -1,0 +1,56 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+========================================================================
+PHASE 2 - CORRUPTION, REPAIR AND COMPARISON
+========================================================================
+WARNING: GOOGLE_API_KEY is required when LLM_PROVIDER=gemini. (heuristic fallback judge)
+
+[1] Load baseline artifacts
+    baseline rows=24 evaluation questions=20
+    baseline retrieval_hit_rate=1.0000
+
+[2] Inject data corruption
+    drop_latest_records: 3 rows
+    blank_summary: 3 rows
+    inject_summary_noise: 3 rows
+    truncate_title: 3 rows
+    stale_publication_date: 3 rows
+    duplicate_rows: 2 rows
+    rows 24 -> 23
+    saved 23 rows -> papers_clean_corrupted.csv, papers_clean_corrupted.json
+
+[3] Rebuild the index on corrupted data and evaluate
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 103/103 [00:00<00:00, 4560.81it/s]
+    corrupted retrieval_hit_rate: 0.8000
+    corrupted mean_token_f1: 0.7593
+    corrupted judge_accuracy: 0.7500
+    corrupted mean_judge_score: 4.0000
+
+[4] Observability on the corrupted dataset
+    quality=FAIL (6/11) failed=['paper_id_unique', 'title_unique', 'summary_not_empty', 'summary_min_length', 'freshness_within_threshold']
+    freshness=STALE stale_rows=4
+
+[5] Repair the dataset from the raw source snapshot
+    rebuilt 24 rows from 24 raw records
+    saved 24 rows -> papers_clean_repaired.csv, papers_clean_repaired.json
+
+[6] Rebuild the index on repaired data and evaluate
+    repaired retrieval_hit_rate: 1.0000
+    repaired mean_token_f1: 1.0000
+    repaired judge_accuracy: 1.0000
+    repaired mean_judge_score: 5.0000
+
+[7] Observability on the repaired dataset
+    quality=PASS (10/11)
+    freshness=STALE stale_rows=1
+
+[8] Write the comparison report
+    wrote D:\VinUniAI\K3_Day10_Data-Pipeline-Data-Observability\data\reports\corruption_report.md
+
+------------------------------------------------------------------------
+metric                      baseline   corrupted    repaired   delta c-b
+------------------------------------------------------------------------
+retrieval_hit_rate            1.0000      0.8000      1.0000     -0.2000
+mean_token_f1                 1.0000      0.7593      1.0000     -0.2407
+judge_accuracy                1.0000      0.7500      1.0000     -0.2500
+mean_judge_score              5.0000      4.0000      5.0000     -1.0000
+------------------------------------------------------------------------

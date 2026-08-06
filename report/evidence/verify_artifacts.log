@@ -1,0 +1,43 @@
+========================================================================
+ARTIFACT AND REPORT VERIFICATION
+========================================================================
+
+[1] Artifact inventory
+    [PASS] artifacts_present: 20/20 required artifacts found
+
+[2] Evaluation set is frozen across all three states
+    [PASS] frozen_test_set: 20 questions shared by baseline/corrupted/repaired
+
+[3] Repair rebuilds the baseline dataset
+    [PASS] repair_matches_baseline: repaired dataset reproduces baseline exactly (24 rows)
+
+[4] Metric trajectory: baseline -> corrupted -> repaired
+    [PASS] same_sample_count: samples={'baseline': 20, 'corrupted': 20, 'repaired': 20}
+    [PASS] corruption_degrades_metrics: 4/4 metrics dropped after corruption: retrieval_hit_rate, mean_token_f1, judge_accuracy, mean_judge_score
+    [PASS] repair_restores_metrics: all four metrics returned to the baseline value
+
+[5] Data quality signals
+    [PASS] quality_signals: baseline=PASS (10/11), corrupted=FAIL (6/11), repaired=PASS (10/11)
+    [PASS] corruption_raises_critical_failures: critical failures on corrupted data: ['paper_id_unique', 'summary_not_empty', 'summary_min_length']
+
+[6] Freshness signals
+    [PASS] freshness_reacts_to_corruption: stale_rows baseline=1 corrupted=4 repaired=1
+    [PASS] no_future_dated_rows: future_dated_rows={'baseline': 0, 'corrupted': 0, 'repaired': 0}
+
+[7] Corruption log traceability
+    [PASS] corruption_log_traceable: seed=20251006, 6 steps, rows 24 -> 23
+    [PASS] corruption_log_matches_dataset: log says 23 rows, corrupted dataset has 23
+
+[8] Reported numbers vs artifacts
+    [PASS] report_matches_artifacts: 12 reported numbers match data/results/
+
+[9] Hygiene
+    [PASS] no_secrets_in_artifacts: scanned 2 directories, no credential pattern found
+    [PASS] env_file_not_tracked: .env is not tracked by git
+    [WARN] artifacts_are_portable: papers_embeddings.json stores an absolute persist_path; papers_embeddings_corrupted.json stores an absolute persist_path; papers_embeddings_repaired.json stores an absolute persist_path (differs per machine; consider storing it relative to the project)
+
+------------------------------------------------------------------------
+15/16 checks passed, 0 failed, 1 warnings
+------------------------------------------------------------------------
+WARN artifacts_are_portable: papers_embeddings.json stores an absolute persist_path; papers_embeddings_corrupted.json stores an absolute persist_path; papers_embeddings_repaired.json stores an absolute persist_path (differs per machine; consider storing it relative to the project)
+wrote D:\VinUniAI\K3_Day10_Data-Pipeline-Data-Observability\data\reports\verification_report.json

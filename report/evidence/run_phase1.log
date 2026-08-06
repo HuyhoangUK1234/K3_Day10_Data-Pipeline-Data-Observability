@@ -1,0 +1,45 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+D:\VinUniAI\K3_Day10_Data-Pipeline-Data-Observability\.venv\Lib\site-packages\huggingface_hub\file_download.py:138: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\TIEN\.cache\huggingface\hub\models--sentence-transformers--all-MiniLM-L6-v2. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+========================================================================
+PHASE 1 - BASELINE PIPELINE (clean data)
+========================================================================
+WARNING: GOOGLE_API_KEY is required when LLM_PROVIDER=gemini.
+         Continuing with the heuristic fallback judge; judge_* metrics are not LLM-based.
+
+[1] Load raw records
+    reused snapshot crossref_records.json (24 records)
+    set REFRESH_SOURCE=1 to re-fetch from Crossref
+
+[2] Clean and model the dataset
+    24 raw -> 24 clean rows, 16 columns
+    saved 24 rows -> papers_clean.csv, papers_clean.json
+
+[3] Build the embedding index
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 103/103 [00:00<00:00, 4150.14it/s]
+    collection 'papers-baseline' with 24 documents
+
+[4] Prepare the evaluation set
+    reused frozen test set (20 questions)
+    set REFRESH_TEST_SET=1 to rebuild it
+
+[5] Evaluate the agent on the baseline corpus
+    retrieval_hit_rate: 1.0000
+    mean_token_f1: 1.0000
+    judge_accuracy: 1.0000
+    mean_judge_score: 5.0000
+
+[6] Run data quality checks
+    10/11 checks passed (PASS)
+
+[7] Build the freshness report
+    status=STALE stale_rows=1/24
+
+[8] Write the baseline Markdown report
+    wrote D:\VinUniAI\K3_Day10_Data-Pipeline-Data-Observability\data\reports\phase1_report.md
+
+[9] Demo the tool-calling agent
+    skipped: no LLM provider configured
+
+Baseline complete. Next: python script/run_corruption_flow.py
