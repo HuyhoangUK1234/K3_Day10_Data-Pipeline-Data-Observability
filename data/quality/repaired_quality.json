@@ -1,0 +1,107 @@
+{
+  "report_name": "repaired",
+  "generated_at": "2026-08-06T03:45:45.822504+00:00",
+  "total_rows": 24,
+  "checks": [
+    {
+      "name": "row_count_minimum",
+      "expectation": "row_count >= 10",
+      "success": true,
+      "observed": 24,
+      "expected": 10,
+      "severity": "critical"
+    },
+    {
+      "name": "paper_id_not_null",
+      "expectation": "paper_id has no blank value",
+      "success": true,
+      "observed": 0,
+      "expected": 0,
+      "severity": "critical"
+    },
+    {
+      "name": "paper_id_unique",
+      "expectation": "paper_id is unique",
+      "success": true,
+      "observed": 0,
+      "expected": 0,
+      "severity": "critical"
+    },
+    {
+      "name": "title_not_null",
+      "expectation": "title has no blank value",
+      "success": true,
+      "observed": 0,
+      "expected": 0,
+      "severity": "critical"
+    },
+    {
+      "name": "title_min_length",
+      "expectation": "title length >= 10",
+      "success": true,
+      "observed": 0,
+      "expected": 0,
+      "severity": "critical"
+    },
+    {
+      "name": "title_unique",
+      "expectation": "no duplicate titles",
+      "success": true,
+      "observed": 0,
+      "expected": 0,
+      "severity": "warning"
+    },
+    {
+      "name": "summary_not_empty",
+      "expectation": "summary is populated",
+      "success": true,
+      "observed": 0,
+      "expected": 0,
+      "severity": "critical"
+    },
+    {
+      "name": "summary_min_length",
+      "expectation": "summary length >= 80",
+      "success": true,
+      "observed": 0,
+      "expected": 0,
+      "severity": "critical"
+    },
+    {
+      "name": "text_for_embedding_not_empty",
+      "expectation": "text_for_embedding is populated",
+      "success": true,
+      "observed": 0,
+      "expected": 0,
+      "severity": "critical"
+    },
+    {
+      "name": "published_not_in_future",
+      "expectation": "publication date is not ahead of the run date",
+      "success": true,
+      "observed": 0,
+      "expected": 0,
+      "severity": "warning"
+    },
+    {
+      "name": "freshness_within_threshold",
+      "expectation": "age_days <= 180 for every row",
+      "success": false,
+      "observed": 1,
+      "expected": 0,
+      "severity": "warning"
+    }
+  ],
+  "check_count": 11,
+  "success_count": 10,
+  "failure_count": 1,
+  "success_rate": 0.9091,
+  "success": true,
+  "failed_checks": [
+    "freshness_within_threshold"
+  ],
+  "critical_failed_checks": [],
+  "warning_checks": [
+    "freshness_within_threshold"
+  ]
+}

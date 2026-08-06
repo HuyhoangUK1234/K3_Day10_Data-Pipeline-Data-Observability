@@ -1,0 +1,116 @@
+{
+  "report_name": "corrupted",
+  "generated_at": "2026-08-06T03:45:44.823431+00:00",
+  "total_rows": 23,
+  "checks": [
+    {
+      "name": "row_count_minimum",
+      "expectation": "row_count >= 10",
+      "success": true,
+      "observed": 23,
+      "expected": 10,
+      "severity": "critical"
+    },
+    {
+      "name": "paper_id_not_null",
+      "expectation": "paper_id has no blank value",
+      "success": true,
+      "observed": 0,
+      "expected": 0,
+      "severity": "critical"
+    },
+    {
+      "name": "paper_id_unique",
+      "expectation": "paper_id is unique",
+      "success": false,
+      "observed": 2,
+      "expected": 0,
+      "severity": "critical"
+    },
+    {
+      "name": "title_not_null",
+      "expectation": "title has no blank value",
+      "success": true,
+      "observed": 0,
+      "expected": 0,
+      "severity": "critical"
+    },
+    {
+      "name": "title_min_length",
+      "expectation": "title length >= 10",
+      "success": true,
+      "observed": 0,
+      "expected": 0,
+      "severity": "critical"
+    },
+    {
+      "name": "title_unique",
+      "expectation": "no duplicate titles",
+      "success": false,
+      "observed": 2,
+      "expected": 0,
+      "severity": "warning"
+    },
+    {
+      "name": "summary_not_empty",
+      "expectation": "summary is populated",
+      "success": false,
+      "observed": 3,
+      "expected": 0,
+      "severity": "critical"
+    },
+    {
+      "name": "summary_min_length",
+      "expectation": "summary length >= 80",
+      "success": false,
+      "observed": 3,
+      "expected": 0,
+      "severity": "critical"
+    },
+    {
+      "name": "text_for_embedding_not_empty",
+      "expectation": "text_for_embedding is populated",
+      "success": true,
+      "observed": 0,
+      "expected": 0,
+      "severity": "critical"
+    },
+    {
+      "name": "published_not_in_future",
+      "expectation": "publication date is not ahead of the run date",
+      "success": true,
+      "observed": 0,
+      "expected": 0,
+      "severity": "warning"
+    },
+    {
+      "name": "freshness_within_threshold",
+      "expectation": "age_days <= 180 for every row",
+      "success": false,
+      "observed": 4,
+      "expected": 0,
+      "severity": "warning"
+    }
+  ],
+  "check_count": 11,
+  "success_count": 6,
+  "failure_count": 5,
+  "success_rate": 0.5455,
+  "success": false,
+  "failed_checks": [
+    "paper_id_unique",
+    "title_unique",
+    "summary_not_empty",
+    "summary_min_length",
+    "freshness_within_threshold"
+  ],
+  "critical_failed_checks": [
+    "paper_id_unique",
+    "summary_not_empty",
+    "summary_min_length"
+  ],
+  "warning_checks": [
+    "title_unique",
+    "freshness_within_threshold"
+  ]
+}

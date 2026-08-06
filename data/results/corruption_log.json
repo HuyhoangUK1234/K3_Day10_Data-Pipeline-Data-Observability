@@ -1,0 +1,68 @@
+{
+  "generated_at": "2026-08-06T03:45:37.381871+00:00",
+  "seed": 20251006,
+  "input_rows": 24,
+  "output_rows": 23,
+  "net_row_change": -1,
+  "steps": [
+    {
+      "step": "drop_latest_records",
+      "description": "Removed the most recently published papers, simulating a truncated incremental load.",
+      "count": 3,
+      "affected_paper_ids": [
+        "10.61838/jhrlp.213",
+        "10.61838/jhrlp.268",
+        "10.61838/jafci.485"
+      ]
+    },
+    {
+      "step": "blank_summary",
+      "description": "Blanked the summary field, simulating a failed abstract extraction.",
+      "count": 3,
+      "affected_paper_ids": [
+        "10.26634/javr.4.1.1116",
+        "10.32738/jeppm-2025-345",
+        "10.22158/eltls.v8n3p21"
+      ]
+    },
+    {
+      "step": "inject_summary_noise",
+      "description": "Spliced unparsed markup and boilerplate into the summary text.",
+      "count": 3,
+      "affected_paper_ids": [
+        "10.7256/2453-8922.2027.1.81187",
+        "10.61838/jtesd.399",
+        "10.15294/jvce.v11i2.45302"
+      ]
+    },
+    {
+      "step": "truncate_title",
+      "description": "Truncated titles to 12 characters, breaking exact-title lookup.",
+      "count": 3,
+      "affected_paper_ids": [
+        "10.61838/kman.jrmde.372",
+        "10.26634/javr.4.1.1273",
+        "10.11116/9789461667755"
+      ]
+    },
+    {
+      "step": "stale_publication_date",
+      "description": "Shifted publication dates 1500 days into the past.",
+      "count": 3,
+      "affected_paper_ids": [
+        "10.26634/javr.4.1.11309",
+        "10.21462/jeltl.v10i3.1648",
+        "10.26877/jipmat.v11i1.2279"
+      ]
+    },
+    {
+      "step": "duplicate_rows",
+      "description": "Appended duplicate rows, simulating a replayed load batch.",
+      "count": 2,
+      "affected_paper_ids": [
+        "10.61838/kman.jrmde.372",
+        "10.61838/kman.ijes.1520"
+      ]
+    }
+  ]
+}

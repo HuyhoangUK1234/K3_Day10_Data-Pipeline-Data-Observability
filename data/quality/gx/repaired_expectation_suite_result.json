@@ -1,0 +1,131 @@
+{
+  "suite_name": "repaired_suite",
+  "engine": "pandas (expectation-style checks, no GX data context)",
+  "evaluated_expectations": 11,
+  "successful_expectations": 10,
+  "unsuccessful_expectations": 1,
+  "success": true,
+  "results": [
+    {
+      "expectation_type": "row_count_minimum",
+      "kwargs": {
+        "expected": 10,
+        "severity": "critical"
+      },
+      "success": true,
+      "result": {
+        "observed_value": 24
+      }
+    },
+    {
+      "expectation_type": "paper_id_not_null",
+      "kwargs": {
+        "expected": 0,
+        "severity": "critical"
+      },
+      "success": true,
+      "result": {
+        "observed_value": 0
+      }
+    },
+    {
+      "expectation_type": "paper_id_unique",
+      "kwargs": {
+        "expected": 0,
+        "severity": "critical"
+      },
+      "success": true,
+      "result": {
+        "observed_value": 0
+      }
+    },
+    {
+      "expectation_type": "title_not_null",
+      "kwargs": {
+        "expected": 0,
+        "severity": "critical"
+      },
+      "success": true,
+      "result": {
+        "observed_value": 0
+      }
+    },
+    {
+      "expectation_type": "title_min_length",
+      "kwargs": {
+        "expected": 0,
+        "severity": "critical"
+      },
+      "success": true,
+      "result": {
+        "observed_value": 0
+      }
+    },
+    {
+      "expectation_type": "title_unique",
+      "kwargs": {
+        "expected": 0,
+        "severity": "warning"
+      },
+      "success": true,
+      "result": {
+        "observed_value": 0
+      }
+    },
+    {
+      "expectation_type": "summary_not_empty",
+      "kwargs": {
+        "expected": 0,
+        "severity": "critical"
+      },
+      "success": true,
+      "result": {
+        "observed_value": 0
+      }
+    },
+    {
+      "expectation_type": "summary_min_length",
+      "kwargs": {
+        "expected": 0,
+        "severity": "critical"
+      },
+      "success": true,
+      "result": {
+        "observed_value": 0
+      }
+    },
+    {
+      "expectation_type": "text_for_embedding_not_empty",
+      "kwargs": {
+        "expected": 0,
+        "severity": "critical"
+      },
+      "success": true,
+      "result": {
+        "observed_value": 0
+      }
+    },
+    {
+      "expectation_type": "published_not_in_future",
+      "kwargs": {
+        "expected": 0,
+        "severity": "warning"
+      },
+      "success": true,
+      "result": {
+        "observed_value": 0
+      }
+    },
+    {
+      "expectation_type": "freshness_within_threshold",
+      "kwargs": {
+        "expected": 0,
+        "severity": "warning"
+      },
+      "success": false,
+      "result": {
+        "observed_value": 1
+      }
+    }
+  ]
+}

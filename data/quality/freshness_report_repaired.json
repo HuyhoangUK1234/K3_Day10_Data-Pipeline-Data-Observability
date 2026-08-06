@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-08-06T03:45:45.825617+00:00",
+  "threshold_days": 180,
+  "total_rows": 24,
+  "latest_published": "2026-08-03",
+  "oldest_published": "2026-02-04",
+  "stale_rows": 1,
+  "stale_ratio": 0.0417,
+  "future_dated_rows": 0,
+  "min_age_days": 3,
+  "median_age_days": 21.5,
+  "max_age_days": 183,
+  "is_fresh": false,
+  "status": "STALE"
+}

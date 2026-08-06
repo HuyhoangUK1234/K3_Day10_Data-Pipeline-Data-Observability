@@ -1,0 +1,182 @@
+[
+  {
+    "id": "summary-000",
+    "question_type": "summary",
+    "question": "What is the paper titled 'A Three-Dimensional Analysis of the Role of Popular Resistance in Strengthening National Sovereignty in Light of Imami Jurisprudence and the International Legal Order: Proposing a Novel Conceptual Model' about?",
+    "ground_truth": "This study aims to provide a three-dimensional analysis of the role of popular resistance in strengthening national sovereignty, with a focus on Imami jurisprudence, the domestic legal system of the Islamic Republic of Iran, and international law.",
+    "ground_truth_doc_ids": [
+      "10.61838/jhrlp.213"
+    ]
+  },
+  {
+    "id": "authors-001",
+    "question_type": "authors",
+    "question": "Who authored the paper titled 'A Three-Dimensional Analysis of the Role of Popular Resistance in Strengthening National Sovereignty in Light of Imami Jurisprudence and the International Legal Order: Proposing a Novel Conceptual Model'?",
+    "ground_truth": "Zeanab Musavisadat, Zahra Montazeri, Sara Rostami",
+    "ground_truth_doc_ids": [
+      "10.61838/jhrlp.213"
+    ]
+  },
+  {
+    "id": "date-002",
+    "question_type": "date",
+    "question": "When was the paper titled 'A Three-Dimensional Analysis of the Role of Popular Resistance in Strengthening National Sovereignty in Light of Imami Jurisprudence and the International Legal Order: Proposing a Novel Conceptual Model' published?",
+    "ground_truth": "2026-08-03",
+    "ground_truth_doc_ids": [
+      "10.61838/jhrlp.213"
+    ]
+  },
+  {
+    "id": "categories-003",
+    "question_type": "categories",
+    "question": "What categories does the paper titled 'A Three-Dimensional Analysis of the Role of Popular Resistance in Strengthening National Sovereignty in Light of Imami Jurisprudence and the International Legal Order: Proposing a Novel Conceptual Model' cover?",
+    "ground_truth": "Journal of Historical Research, Law and Policy, journal-article",
+    "ground_truth_doc_ids": [
+      "10.61838/jhrlp.213"
+    ]
+  },
+  {
+    "id": "summary-004",
+    "question_type": "summary",
+    "question": "What is the paper titled 'Validation of a Model for Improving the Quality of Islamic Education Courses in Iraqi Universities' about?",
+    "ground_truth": "Purpose: The present study aimed to validate a multidimensional model for improving the quality of Islamic education courses in Iraqi universities.",
+    "ground_truth_doc_ids": [
+      "10.61838/kman.ijes.1520"
+    ]
+  },
+  {
+    "id": "authors-005",
+    "question_type": "authors",
+    "question": "Who authored the paper titled 'Validation of a Model for Improving the Quality of Islamic Education Courses in Iraqi Universities'?",
+    "ground_truth": "Ghalib Mhmood Mhawes, Narges Saeidian Khorasgani, Falah Salih Hussein, Badri Shahtalebi",
+    "ground_truth_doc_ids": [
+      "10.61838/kman.ijes.1520"
+    ]
+  },
+  {
+    "id": "date-006",
+    "question_type": "date",
+    "question": "When was the paper titled 'Validation of a Model for Improving the Quality of Islamic Education Courses in Iraqi Universities' published?",
+    "ground_truth": "2026-07-27",
+    "ground_truth_doc_ids": [
+      "10.61838/kman.ijes.1520"
+    ]
+  },
+  {
+    "id": "categories-007",
+    "question_type": "categories",
+    "question": "What categories does the paper titled 'Validation of a Model for Improving the Quality of Islamic Education Courses in Iraqi Universities' cover?",
+    "ground_truth": "\u202aIranian Journal of Educational Sociology, journal-article",
+    "ground_truth_doc_ids": [
+      "10.61838/kman.ijes.1520"
+    ]
+  },
+  {
+    "id": "summary-008",
+    "question_type": "summary",
+    "question": "What is the paper titled 'The Rise of Augmented Reality in Teacher Education: a Bibliometric Analysis of Research' about?",
+    "ground_truth": "In the digital era, immersive learning media is increasingly popular in the educational sphere.",
+    "ground_truth_doc_ids": [
+      "10.26634/javr.4.1.1273"
+    ]
+  },
+  {
+    "id": "authors-009",
+    "question_type": "authors",
+    "question": "Who authored the paper titled 'The Rise of Augmented Reality in Teacher Education: a Bibliometric Analysis of Research'?",
+    "ground_truth": "Swaraj Naik",
+    "ground_truth_doc_ids": [
+      "10.26634/javr.4.1.1273"
+    ]
+  },
+  {
+    "id": "date-010",
+    "question_type": "date",
+    "question": "When was the paper titled 'The Rise of Augmented Reality in Teacher Education: a Bibliometric Analysis of Research' published?",
+    "ground_truth": "2026-07-21",
+    "ground_truth_doc_ids": [
+      "10.26634/javr.4.1.1273"
+    ]
+  },
+  {
+    "id": "categories-011",
+    "question_type": "categories",
+    "question": "What categories does the paper titled 'The Rise of Augmented Reality in Teacher Education: a Bibliometric Analysis of Research' cover?",
+    "ground_truth": "i-manager's Journal on Augmented &amp; Virtual Reality, journal-article",
+    "ground_truth_doc_ids": [
+      "10.26634/javr.4.1.1273"
+    ]
+  },
+  {
+    "id": "summary-012",
+    "question_type": "summary",
+    "question": "What is the paper titled 'Knowledge-Enhanced Semantic Reasoning Model for Implicit Sentiment Recognition' about?",
+    "ground_truth": "Existing methods for implicit sentiment identification in think tank documents face limitations in deep semantic understanding, including insufficient integration of domain knowledge and difficulty in modeling sentiment evolution in long texts.",
+    "ground_truth_doc_ids": [
+      "10.32738/jeppm-2025-345"
+    ]
+  },
+  {
+    "id": "authors-013",
+    "question_type": "authors",
+    "question": "Who authored the paper titled 'Knowledge-Enhanced Semantic Reasoning Model for Implicit Sentiment Recognition'?",
+    "ground_truth": "Yuhui Sun, Feng Tian",
+    "ground_truth_doc_ids": [
+      "10.32738/jeppm-2025-345"
+    ]
+  },
+  {
+    "id": "date-014",
+    "question_type": "date",
+    "question": "When was the paper titled 'Knowledge-Enhanced Semantic Reasoning Model for Implicit Sentiment Recognition' published?",
+    "ground_truth": "2026-07-12",
+    "ground_truth_doc_ids": [
+      "10.32738/jeppm-2025-345"
+    ]
+  },
+  {
+    "id": "categories-015",
+    "question_type": "categories",
+    "question": "What categories does the paper titled 'Knowledge-Enhanced Semantic Reasoning Model for Implicit Sentiment Recognition' cover?",
+    "ground_truth": "Journal of Engineering, Project, and Production Management, journal-article",
+    "ground_truth_doc_ids": [
+      "10.32738/jeppm-2025-345"
+    ]
+  },
+  {
+    "id": "summary-016",
+    "question_type": "summary",
+    "question": "What is the paper titled 'A Moderating and mediating model of innovation performance' about?",
+    "ground_truth": "Pioneer performances depend on entrepreneurial orientation for their success.",
+    "ground_truth_doc_ids": [
+      "10.51153/mf.v20.i2.709"
+    ]
+  },
+  {
+    "id": "authors-017",
+    "question_type": "authors",
+    "question": "Who authored the paper titled 'A Moderating and mediating model of innovation performance'?",
+    "ground_truth": "Saira Naz, Fatima Liaquat",
+    "ground_truth_doc_ids": [
+      "10.51153/mf.v20.i2.709"
+    ]
+  },
+  {
+    "id": "date-018",
+    "question_type": "date",
+    "question": "When was the paper titled 'A Moderating and mediating model of innovation performance' published?",
+    "ground_truth": "2026-05-05",
+    "ground_truth_doc_ids": [
+      "10.51153/mf.v20.i2.709"
+    ]
+  },
+  {
+    "id": "categories-019",
+    "question_type": "categories",
+    "question": "What categories does the paper titled 'A Moderating and mediating model of innovation performance' cover?",
+    "ground_truth": "Market Forces, journal-article",
+    "ground_truth_doc_ids": [
+      "10.51153/mf.v20.i2.709"
+    ]
+  }
+]
