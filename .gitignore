@@ -5,5 +5,3 @@ lab.txt
 src/*.egg-info/
 lab/
 **/__pycache__/
-.agents/
-CHANGE_REQUEST/
